@@ -1,6 +1,6 @@
 package br.com.alura.listavip.service;
 
-import br.com.alura.enviadorEmail.enviadorEmail.MailService;
+//import br.com.alura.enviadorEmail.enviadorEmail.MailService;
 import br.com.alura.listavip.model.Convidado;
 import br.com.alura.listavip.repository.ConvidadoRepository;
 
@@ -23,8 +23,8 @@ public class ConvidadoService
 	public void save(Convidado convidado)
 	{
 		repository.save(convidado);
-		MailService mailService = new MailService();
-		mailService.enviar(convidado.getNome(), convidado.getEmail());
+		//MailService mailService = new MailService();
+		//mailService.enviar(convidado.getNome(), convidado.getEmail());
 	}
 	
 }
