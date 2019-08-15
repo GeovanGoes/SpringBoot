@@ -3,7 +3,6 @@
  */
 package br.com.alura.Forum.controller.dto;
 
-import br.com.alura.Forum.model.Resposta;
 import br.com.alura.Forum.model.StatusTopico;
 import br.com.alura.Forum.model.Topico;
 

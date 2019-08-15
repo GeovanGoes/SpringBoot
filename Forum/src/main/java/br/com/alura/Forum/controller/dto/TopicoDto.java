@@ -6,8 +6,8 @@ package br.com.alura.Forum.controller.dto;
 import br.com.alura.Forum.model.Topico;
 
 import java.time.LocalDateTime;
-import java.util.List;
-import java.util.stream.Collectors;
+
+import org.springframework.data.domain.Page;
 
 /**
  * @author geovan.goes
@@ -61,7 +61,8 @@ public class TopicoDto {
 	 * @param asList
 	 * @return
 	 */
-	public static List<TopicoDto> converter(List<Topico> topicos) {
-		return topicos.stream().map(TopicoDto::new).collect(Collectors.toList());
+	public static Page<TopicoDto> converter(Page<Topico> page) 
+	{
+		return page.map(TopicoDto::new);
 	}
 }
