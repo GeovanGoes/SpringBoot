@@ -9,7 +9,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.goes.demoapikey.auth.jwt.JwtTokenDTO;
 import com.goes.demoapikey.auth.jwt.TokenService;
+import com.goes.demoapikey.auth.usernamepassword.DadosAutenticacao;
 import com.goes.demoapikey.domain.usuario.Usuario;
 
 import jakarta.validation.Valid;

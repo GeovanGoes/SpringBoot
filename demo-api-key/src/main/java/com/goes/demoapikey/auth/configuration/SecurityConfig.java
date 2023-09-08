@@ -1,4 +1,4 @@
-package com.goes.demoapikey.configuration;
+package com.goes.demoapikey.auth.configuration;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -14,7 +14,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
-import com.goes.demoapikey.auth.apikey.APIKeySecurityFilter;
+import com.goes.demoapikey.auth.apikey.APIKeyFilter;
 import com.goes.demoapikey.auth.jwt.JwtTokenFilter;
 
 @Configuration
@@ -25,7 +25,7 @@ public class SecurityConfig
 	@Autowired
 	private JwtTokenFilter tokenFilter;
 	@Autowired
-	private APIKeySecurityFilter apiKeyFilter;
+	private APIKeyFilter apiKeyFilter;
 
 	@Bean
 	public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {

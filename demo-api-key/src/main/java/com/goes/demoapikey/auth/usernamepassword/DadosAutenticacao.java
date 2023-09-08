@@ -1,4 +1,4 @@
-package com.goes.demoapikey.controller;
+package com.goes.demoapikey.auth.usernamepassword;
 
 public record DadosAutenticacao(String username, String password) {
 	
