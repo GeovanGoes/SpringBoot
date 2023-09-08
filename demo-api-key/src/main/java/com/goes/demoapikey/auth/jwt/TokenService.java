@@ -4,6 +4,9 @@ import java.time.Instant;
 import java.time.LocalDateTime;
 import java.time.ZoneOffset;
 
+import javax.management.RuntimeErrorException;
+
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import com.auth0.jwt.JWT;
@@ -14,26 +17,31 @@ import com.auth0.jwt.interfaces.DecodedJWT;
 import com.auth0.jwt.interfaces.JWTVerifier;
 import com.goes.demoapikey.domain.usuario.Usuario;
 
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
 @Service
 public class TokenService {
+	@Value("${api.security.token.secret}")
+	private String secret;
 	
-	public void verify(String token) {
-		DecodedJWT decodedJWT;
+	public String getSubject(String token) {
 		try {
-		    Algorithm algorithm = Algorithm.HMAC256("666-333");
-		    JWTVerifier verifier = JWT.require(algorithm)
+		    Algorithm algorithm = Algorithm.HMAC256(secret);
+		    return JWT.require(algorithm)
 		        .withIssuer("goes")
-		        .build();
-		        
-		    decodedJWT = verifier.verify(token);
+		        .build()
+		        .verify(token)
+		        .getSubject();
 		} catch (JWTVerificationException exception){
-		    // Invalid signature/claims
+		    throw new RuntimeException("Problemas para verificar o token", exception);
 		}
 	}
 	
 	public String gerarToken(Usuario usuario) {
 		try {
-		    var algorithm = Algorithm.HMAC256("666-333");
+			log.info(secret);
+		    var algorithm = Algorithm.HMAC256(secret);
 		    return JWT.create()
 		        .withIssuer("goes")
 		        .withSubject(usuario.getUsername())

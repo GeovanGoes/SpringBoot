@@ -1,5 +1,4 @@
 package com.goes.demoapikey.controller;
 
-public class JwtTokenDTO {
-
+public record JwtTokenDTO (String token){
 }

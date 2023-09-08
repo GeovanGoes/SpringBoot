@@ -1,0 +1,1 @@
+insert into usuario (id, nome, sobrenome, username, password) values (999, 'Geovan', 'Goes', 'goes', '$2a$10$JRGeqnxVsvuo.NxQdWEOMOU9VKg3CAtAdEpClMhGtrxu0pNwOOgJq')
