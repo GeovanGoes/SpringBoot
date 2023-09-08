@@ -22,6 +22,8 @@ import lombok.extern.slf4j.Slf4j;
 @Component
 public class JwtTokenFilter extends OncePerRequestFilter 
 {
+	private static final String BEARER_PREFIX = "Bearer ";
+
 	@Autowired
 	private TokenService tokenService;
 
@@ -34,9 +36,9 @@ public class JwtTokenFilter extends OncePerRequestFilter
 		
 		String attribute = (String) request.getHeader("Authorization");
 		
-		log.info("Token: {}", attribute);
-		if (Objects.nonNull(attribute)) {
-			String token = attribute.replace("Bearer ", "");
+		log.info("Authorization: {}", attribute);
+		if (Objects.nonNull(attribute) && attribute.contains(BEARER_PREFIX)) {
+			String token = attribute.replace(BEARER_PREFIX, "");
 			String subject = tokenService.getSubject(token);
 			log.info("Usuario logado username: {}", subject);
 			Usuario usuario = usuarioRepository.findByUsernameAndAtivoTrue(subject);

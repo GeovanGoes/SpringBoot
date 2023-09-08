@@ -16,7 +16,7 @@ public record UsuarioDTO(
 	
 	
 	public UsuarioDTO(Usuario usuario) {
-		this(usuario.getId(), usuario.getNome(), usuario.getSobrenome(), usuario.getUsername(), "Aqui a segurança é braba");
+		this(usuario.getId(), usuario.getNome(), usuario.getSobrenome(), usuario.getUsername(), null);
 	}
 	
 }

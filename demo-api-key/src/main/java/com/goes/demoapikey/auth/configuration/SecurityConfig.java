@@ -13,8 +13,10 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.security.web.authentication.www.BasicAuthenticationFilter;
 
 import com.goes.demoapikey.auth.apikey.APIKeyFilter;
+import com.goes.demoapikey.auth.basic.BasicAuthFilter;
 import com.goes.demoapikey.auth.jwt.JwtTokenFilter;
 
 @Configuration
@@ -26,6 +28,8 @@ public class SecurityConfig
 	private JwtTokenFilter tokenFilter;
 	@Autowired
 	private APIKeyFilter apiKeyFilter;
+	@Autowired
+	private BasicAuthFilter basicFilter;
 
 	@Bean
 	public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
@@ -37,6 +41,7 @@ public class SecurityConfig
 				.authenticated())
 		.addFilterBefore(tokenFilter, UsernamePasswordAuthenticationFilter.class)
 		.addFilterBefore(apiKeyFilter, JwtTokenFilter.class)
+		.addFilterBefore(basicFilter, APIKeyFilter.class)
 		.build();
 	}
 	
